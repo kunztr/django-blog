@@ -1,0 +1,21 @@
+body{
+    font-family:"verdana";
+    background-color: #232e3b;
+    color: #277fab;
+    font-style: normal;
+    text-align: left;
+    margin: 25px 50px 25px 50px;
+    padding: inherit;
+}
+img{
+    padding: 20px 20px 20px 20px;
+}
+p.post2{
+    color:#899bb3;
+}
+h2.post2{
+    color:#899bb3;
+}
+#aboutpage{
+    background-color: #32363b;
+}
