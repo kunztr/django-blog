@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Home</title>
+</head>
+<body>
+    {% if latest_blog_posts_list %}
+        <ul>
+        {% for blog_post in latest_blog_posts_list %}
+            <li><a href="{% url 'blog:blog_post' blog_post.id %}">{{ blog_post.content }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are currently no blog posts.</p>
+    {% endif %}
+</body>
+</html>

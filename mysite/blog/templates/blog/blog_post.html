@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+</head>
+<body>
+    <h1>
+        {{ blog_post.content }}
+    </h1>
+    <ul>
+        {% for comment in blog_post.comment_set.all %}
+            <li>{{ comment.content }}</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'blog:comment' blog_post.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="new_comment_name" id="new_comment_name" value="{{new_comment_name}}">
+        <input type="submit" value="Post">
+    </form>
+</body>
+</html>
