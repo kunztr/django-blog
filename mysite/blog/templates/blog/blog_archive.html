@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
-    <title>Blog Home</title>
+    <meta charset="UTF-8">
+    <title>Blog Archive</title>
 </head>
 <body>
-    <h1>
-            Blog &nbsp;|
-        <a href="{% url 'blog:about' %}">
-            About
-        </a>
-            &nbsp;|&nbsp;
-        <a href="{% url 'blog:tips' %}">
-            Tips
-        </a>
-    </h1>
-    {% if latest_blog_posts_list %}
+    <h1>Blog Archive</h1>
+    {% if blog_posts_list %}
         <ul>
-        {% for blog_post in latest_blog_posts_list %}
+        {% for blog_post in blog_posts_list %}
             <li>
                 <h3><a href="{% url 'blog:blog_post' blog_post.id %}">{{ blog_post.title }}</a>
                 by {{ blog_post.author }}</h3>
@@ -31,8 +22,5 @@
     {% else %}
         <p>There are currently no blog posts.</p>
     {% endif %}
-    <p1>
-        <a href="{% url 'blog:blog_archive' %}">Blog Archive</a>
-    </p1>
 </body>
 </html>

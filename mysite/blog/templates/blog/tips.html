@@ -2,18 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
         <title>
             Tips
         </title>
     </head>
     <body>
         <h1>
-        <a href="index.html">
+        <a href="{% url 'blog:index' %}">
             Blog
         </a>
             &nbsp;|
-        <a href="about.html">
+        <a href="{% url 'blog:about' %}">
             About
         </a>
             &nbsp;|&nbsp;&nbsp;Tips
@@ -96,5 +97,7 @@
                     <li><code>padding: 20px 20px 20px 20px;</code></li>
                 </ul></li>
         </ol>
+        <br>
+        {% now "jS F Y H:i" %}
     </body>
 </html>

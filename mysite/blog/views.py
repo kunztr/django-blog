@@ -21,12 +21,13 @@ def index(request):
     # return HttpResponse("Hello, world. You're at the polls index.")
 
 
-def blog_home(request, blog_id):
-    return HttpResponse("This is blog %s." % blog_id)
-
-
-def blog_archive(request, blog_id):
-    return HttpResponse("This is blog %s." % blog_id)
+def blog_archive(request):
+    blog_posts_list = Blog.objects.order_by('-posted')
+    # template = loader.get_template('blog/index.html')
+    context = {
+        'blog_posts_list': blog_posts_list,
+    }
+    return render(request, 'blog/blog_archive.html', context)
 
 
 def blog_post(request, blog_id):
@@ -36,13 +37,21 @@ def blog_post(request, blog_id):
 
 
 def comment(request, blog_id):
-    print("reeeeeeeee" + str(request))
     if request.method == 'POST':
-        print("pepepepornimnforjgojr$$$$$$$$$$$$$$$")
         b = Blog.objects.get(id=blog_id)
         commenter = request.POST.get('new_comment_name')
-        c = b.comment_set.create(commenter=commenter, email="email@email.com", content="testtttttttttt", posted=timezone.now())
+        email = request.POST.get('new_comment_email')
+        content = request.POST.get('new_comment_content')
+        c = b.comment_set.create(commenter=commenter, email=email, content=content, posted=timezone.now())
 
         c.save()
         b.save()
     return HttpResponseRedirect(reverse('blog:blog_post', args=(blog_id,)))
+
+
+def about(request):
+    return render(request, 'blog/about.html')
+
+
+def tips(request):
+    return render(request, 'blog/tips.html')
